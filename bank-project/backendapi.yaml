@@ -46,3 +46,7 @@ spec:
               key: DB_PASSWORD
       imagePullSecrets:
       - name: ecr-cred  # Must match your created secret
+      containers:
+      - name: bank-backend-container
+        image: 454592823186.dkr.ecr.us-east-1.amazonaws.com/bank-backendapi:28
+        imagePullPolicy: Always
