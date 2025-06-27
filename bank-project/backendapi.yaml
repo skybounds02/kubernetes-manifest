@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: bank-backend-container
-        image: bank-backendapi:28
+        image: 454592823186.dkr.ecr.us-east-1.amazonaws.com/bank-backendapi:28  # Full ECR path
+        imagePullPolicy: Always  # Explicit pull policy
         ports:
         - containerPort: 8080
         env:
@@ -33,7 +34,6 @@ spec:
             configMapKeyRef:
               name: bank-config
               key: DB_NAME
-
         - name: DB_USERNAME
           valueFrom:
             secretKeyRef:
@@ -44,3 +44,5 @@ spec:
             secretKeyRef:
               name: bank-secret
               key: DB_PASSWORD
+      imagePullSecrets:
+      - name: ecr-cred  # Must match your created secret
